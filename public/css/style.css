@@ -1,6 +1,5 @@
 .card {
     height: 400px; 
-    border: 1px solid black;
     display: flex;
     flex-direction: column;
 }
@@ -23,3 +22,17 @@
     text-overflow: ellipsis;
 }
 
+ /* navbar */
+.navbar-brand {
+    font-weight: bold; 
+    color: #007bff !important; 
+    text-shadow: 1px 1px 2px #000; 
+    letter-spacing: 0.05em; 
+    margin-left: 1%;
+}
+
+
+.navbar-brand:hover {
+    color: #0056b3 !important; 
+    text-decoration: none; /
+}
