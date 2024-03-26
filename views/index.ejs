@@ -41,17 +41,31 @@
     </div>    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
-        document.getElementById('searchInput').addEventListener('input', async function(e) {
+        function debounce(func, wait, immediate) {
+            var timeout;
+            return function() {
+                var context = this, args = arguments;
+                var later = function() {
+                    timeout = null;
+                    if (!immediate) func.apply(context, args);
+                };
+                var callNow = immediate && !timeout;
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+                if (callNow) func.apply(context, args);
+            };
+        }
+
+
+        let lastQueryLength = 0;
+        document.getElementById('searchInput').addEventListener('input', debounce(async function(e) {
             const query = e.target.value;
-            if (!query) {
-                document.getElementById('suggestionsDropdown').innerHTML = '';
-                return;
-            }
-        
+            
+
             // Fetch suggestions from your server
             const response = await fetch(`/suggest?q=${encodeURIComponent(query)}`);
             const suggestions = await response.json();
-        
+
             // Populate the suggestions dropdown
             const suggestionsDropdown = document.getElementById('suggestionsDropdown');
             suggestionsDropdown.innerHTML = '';
@@ -65,8 +79,9 @@
                 });
                 suggestionsDropdown.appendChild(item);
             });
-        });
-        </script>
+        }, 250)); // 250 milliseconds debounce time
+
+    </script>
         
   </body>
 </html>
