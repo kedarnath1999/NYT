@@ -81,6 +81,18 @@
             });
         }, 250)); // 250 milliseconds debounce time
 
+        // To clear suggestions when clicked outside the search box
+        document.addEventListener('click', function(event) {
+            const suggestionsDropdown = document.getElementById('suggestionsDropdown');
+            const searchInput = document.getElementById('searchInput');
+
+            // Check if the click is outside of the suggestionsDropdown and the searchInput
+            if (!suggestionsDropdown.contains(event.target) && event.target !== searchInput) {
+                suggestionsDropdown.innerHTML = ''; // Clear suggestions
+            }
+        });
+
+
     </script>
         
   </body>
