@@ -27,9 +27,11 @@ router.get('/suggest', async (req, res) => {
 
 router.get('/', async (req, res) => {
     const query = req.query.query;
+    const page = parseInt(req.query.page) || 1;
+    const limit = 10; // Number of articles per page
+    const offset = (page - 1) * limit;
     let apiUrl;
     let articles;
-    console.log(query,"lll")
     if (query) {
         // If there's a search query, use the Article Search API
         apiUrl = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${encodeURIComponent(query)}&api-key=${apiKey}`;
@@ -40,8 +42,17 @@ router.get('/', async (req, res) => {
 
     try {
         const response = await axios.get(apiUrl);
-        articles = query ? response.data.response.docs : response.data.results;
-        res.render('index', { articles: articles, query: query || '' });
+        if(!query)
+        {
+            articles = response.data.results.slice(offset, offset + limit);
+            const maxPages = Math.ceil(response.data.results.length / limit);
+            res.render('index', { articles: articles, query: '', page: page, maxPages: maxPages });
+        }
+        else{
+            articles = query ? response.data.response.docs : response.data.results;
+            res.render('index', { articles: articles, query: query || '' });
+        }
+        
     } catch (error) {
         console.error('Error fetching articles:', error);
         res.send('Failed to fetch articles');
