@@ -1,14 +1,17 @@
 <!doctype html>
 <html lang="en">
     <%- include('header') %>
-  <body>
+  <body>   
     <div class="container mt-5">
         <form class="d-flex justify-content-center" action="/" method="GET">
             <div class="container mt-4">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Search articles" id="searchInput" aria-label="Search articles" aria-describedby="basic-addon2" acct name="query">
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="submit" id="searchBtn">Search</button>
+                        <button class="btn btn-outline-secondary" type="submit" id="searchBtn">
+                            <span id="searchSpinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display:none;"></span>
+                            Search
+                        </button>
                     </div>
                 </div>
                 <div id="suggestionsDropdown" class="list-group" style="position: absolute; z-index: 1000;"></div>
@@ -89,9 +92,13 @@
         let lastQueryLength = 0;
         document.getElementById('searchInput').addEventListener('input', debounce(async function(e) {
             const query = e.target.value;
-            
+            // display loading
+            document.getElementById('searchSpinner').style.display = 'inline-block';
+
             // Fetch suggestions from your server
             const response = await fetch(`/suggest?q=${encodeURIComponent(query)}`);
+            document.getElementById('searchSpinner').style.display = 'none';
+
             const suggestions = await response.json();
 
             // Populate the suggestions dropdown
