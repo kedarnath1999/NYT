@@ -17,3 +17,20 @@ describe('Top Stories Functionality', () => {
         expect(response.statusCode).toBe(200);
     });
 });
+
+describe('/suggest route', () => {
+    it('returns an empty array when no query is provided', async () => {
+      const response = await request(app).get('/suggest');
+      expect(response.statusCode).toBe(200);
+      expect(response.body).toEqual([]); 
+    });
+  
+    it('returns suggestions when a valid query is provided', async () => {
+      // This test assumes your application can handle a specific query and return a non-empty result.
+      // You might need to mock axios to return a specific response or use a known query that will return results.
+      const response = await request(app).get('/suggest?q=technology');
+      expect(response.statusCode).toBe(200);
+      expect(response.body).toBeInstanceOf(Array);
+      expect(response.body.length).toBeGreaterThan(0); // Expect at least one suggestion
+    });
+  });
