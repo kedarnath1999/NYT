@@ -55,7 +55,7 @@ router.get('/', async (req, res) => {
         
     } catch (error) {
         console.error('Error fetching articles:', error);
-        res.send('Failed to fetch articles');
+        res.render('networkError');
     }
 });
 
