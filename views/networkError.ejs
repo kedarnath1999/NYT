@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <%- include('header') %>
+</head>
+<body>
+    <body>
+        <div id="networkError" class="col-12 text-center" style="display: block;">
+            <img src="/images/networkError.png" alt="Network Error" class="img-fluid" style="max-width: 200px; margin-top: 20px;">
+            <h3 class="mt-3">Oops! Something went wrong.</h3>
+            <p>We're having trouble connecting to the server. Please check your internet connection or try again later.</p>
+            <button class="btn btn-primary" onclick="window.location.reload();">Try Again</button>
+        </div>
+    </body>
+</body>
+</html>
