@@ -1,5 +1,4 @@
 
-```markdown
 # NYT Project Installation Guide
 
 This guide provides step-by-step instructions on how to set up and run the NYT project on your local machine. Before you begin, ensure you have Git and Node.js installed on your computer.
