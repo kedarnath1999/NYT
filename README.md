@@ -56,4 +56,3 @@ Congratulations! You have successfully set up and started the NYT project on you
 ```
 
 This markdown content includes all the steps formatted for GitHub's markdown rendering, including code blocks for terminal commands and hyperlinks for navigation. Just make sure to update any placeholders or project-specific details as needed.
-
