@@ -49,9 +49,3 @@ npm start
 
 This will start the server on the port specified in your `.env` file (default is 3000). You can access the application by opening `http://localhost:3000` in your web browser.
 
-## Support
-
-Congratulations! You have successfully set up and started the NYT project on your local machine. For further assistance or questions, please refer to the [New York Times API documentation](https://developer.nytimes.com/docs) or create an issue in this GitHub repository.
-```
-
-This markdown content includes all the steps formatted for GitHub's markdown rendering, including code blocks for terminal commands and hyperlinks for navigation. Just make sure to update any placeholders or project-specific details as needed.
